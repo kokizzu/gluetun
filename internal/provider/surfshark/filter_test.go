@@ -29,14 +29,14 @@ func Test_Surfshark_filterServers(t *testing.T) {
 		},
 		"no filter": {
 			servers: []models.SurfsharkServer{
-				{Hostname: "a"},
-				{Hostname: "b"},
-				{Hostname: "c"},
+				{Hostname: "a", UDP: true},
+				{Hostname: "b", UDP: true},
+				{Hostname: "c", UDP: true},
 			},
 			filtered: []models.SurfsharkServer{
-				{Hostname: "a"},
-				{Hostname: "b"},
-				{Hostname: "c"},
+				{Hostname: "a", UDP: true},
+				{Hostname: "b", UDP: true},
+				{Hostname: "c", UDP: true},
 			},
 		},
 		"filter OpenVPN out": {
@@ -44,12 +44,12 @@ func Test_Surfshark_filterServers(t *testing.T) {
 				VPN: constants.Wireguard,
 			},
 			servers: []models.SurfsharkServer{
-				{OpenVPN: true, Hostname: "a"},
-				{OpenVPN: true, Wireguard: true, Hostname: "b"},
-				{OpenVPN: true, Hostname: "c"},
+				{OpenVPN: true, UDP: true, Hostname: "a"},
+				{OpenVPN: true, UDP: true, Wireguard: true, Hostname: "b"},
+				{OpenVPN: true, UDP: true, Hostname: "c"},
 			},
 			filtered: []models.SurfsharkServer{
-				{OpenVPN: true, Wireguard: true, Hostname: "b"},
+				{OpenVPN: true, UDP: true, Wireguard: true, Hostname: "b"},
 			},
 		},
 		"filter by region": {
@@ -57,12 +57,12 @@ func Test_Surfshark_filterServers(t *testing.T) {
 				Regions: []string{"b"},
 			},
 			servers: []models.SurfsharkServer{
-				{Region: "a"},
-				{Region: "b"},
-				{Region: "c"},
+				{Region: "a", UDP: true},
+				{Region: "b", UDP: true},
+				{Region: "c", UDP: true},
 			},
 			filtered: []models.SurfsharkServer{
-				{Region: "b"},
+				{Region: "b", UDP: true},
 			},
 		},
 		"filter by country": {
@@ -70,12 +70,12 @@ func Test_Surfshark_filterServers(t *testing.T) {
 				Countries: []string{"b"},
 			},
 			servers: []models.SurfsharkServer{
-				{Country: "a"},
-				{Country: "b"},
-				{Country: "c"},
+				{Country: "a", UDP: true},
+				{Country: "b", UDP: true},
+				{Country: "c", UDP: true},
 			},
 			filtered: []models.SurfsharkServer{
-				{Country: "b"},
+				{Country: "b", UDP: true},
 			},
 		},
 		"filter by city": {
@@ -83,12 +83,12 @@ func Test_Surfshark_filterServers(t *testing.T) {
 				Cities: []string{"b"},
 			},
 			servers: []models.SurfsharkServer{
-				{City: "a"},
-				{City: "b"},
-				{City: "c"},
+				{City: "a", UDP: true},
+				{City: "b", UDP: true},
+				{City: "c", UDP: true},
 			},
 			filtered: []models.SurfsharkServer{
-				{City: "b"},
+				{City: "b", UDP: true},
 			},
 		},
 		"filter by hostname": {
@@ -96,12 +96,12 @@ func Test_Surfshark_filterServers(t *testing.T) {
 				Hostnames: []string{"b"},
 			},
 			servers: []models.SurfsharkServer{
-				{Hostname: "a"},
-				{Hostname: "b"},
-				{Hostname: "c"},
+				{Hostname: "a", UDP: true},
+				{Hostname: "b", UDP: true},
+				{Hostname: "c", UDP: true},
 			},
 			filtered: []models.SurfsharkServer{
-				{Hostname: "b"},
+				{Hostname: "b", UDP: true},
 			},
 		},
 		"filter by OpenVPN TCP": {
